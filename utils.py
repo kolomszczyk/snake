@@ -1,35 +1,21 @@
-
-# 1 empty
-# 2 tail
-# 3 head
-TABLE_X, TABLE_Y = 20, 20
-
-# matrix[x] [y]
-# - x
-# | y 
+import pygame
 
 
-def create_matrix():
-    return [["X" for i in range(TABLE_X)] for j in range(TABLE_Y )]
+# some setting
+MATRIX_WIDTH: int = 30
+MATRIX_HEIGHT: int =  30
+MATRIX_BOX_PIX: int = 25
+
+WIDTH_PIX: int = MATRIX_WIDTH * MATRIX_BOX_PIX
+HEIGHT_PIX: int = MATRIX_HEIGHT  * MATRIX_BOX_PIX 
 
 
+# this function help draw 
+# proper rectangles
+def draw_rect(screen, color, x, y):
 
-# point 
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def get_x(self):
-        return self.x
-
-    def get_y(self):
-        return self.y
-
-    def set_x(self, x):
-        self.x = x
-
-    def set_y(self, y):
-        self.y = y
-
+    pygame.draw.rect(screen, color, [x * MATRIX_BOX_PIX, 
+        (MATRIX_HEIGHT - y - 1) * MATRIX_BOX_PIX,
+        MATRIX_BOX_PIX,
+        MATRIX_BOX_PIX])
 

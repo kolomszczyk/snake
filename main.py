@@ -1,14 +1,7 @@
 import pygame
 # from time import sleep
 from snake import * 
-
-MATRIX_WIDTH: int = 30
-MATRIX_HEIGHT: int =  30
-MATRIX_BOX_PIX: int = 25
-
-WIDTH_PIX: int = MATRIX_WIDTH * MATRIX_BOX_PIX
-HEIGHT_PIX: int = MATRIX_HEIGHT  * MATRIX_BOX_PIX 
-
+from utils import *
 
 # g stands for grass
 # b stands for body
@@ -52,18 +45,20 @@ def draw(screen: pygame.surface.Surface, snake: Snake):
                 
 
     # draw this cell 
-            pygame.draw.rect(screen, color, [width * MATRIX_BOX_PIX, 
-                (MATRIX_HEIGHT - height - 1) * MATRIX_BOX_PIX,
-                MATRIX_BOX_PIX,
-                MATRIX_BOX_PIX])
+            draw_rect(screen, color, width, height)
+            
+            # pygame.draw.rect(screen, color, [width * MATRIX_BOX_PIX, 
+            #     (MATRIX_HEIGHT - height - 1) * MATRIX_BOX_PIX,
+            #     MATRIX_BOX_PIX,
+            #     MATRIX_BOX_PIX])
 
     # draw snake
     # head
-    
     pygame.draw.rect(screen, BLUE, [snake.head_x * MATRIX_BOX_PIX, 
         (MATRIX_HEIGHT - snake.head_y - 1) * MATRIX_BOX_PIX,
         MATRIX_BOX_PIX,
         MATRIX_BOX_PIX])
+
     # refresh 
     pygame.display.flip()
 
