@@ -8,8 +8,16 @@ MATRIX_BOX_PIX: int = 25
 WIDTH_PIX: int = MATRIX_WIDTH * MATRIX_BOX_PIX
 HEIGHT_PIX: int = MATRIX_HEIGHT  * MATRIX_BOX_PIX 
 
-matrix = [["0" for i in range(MATRIX_HEIGHT)] for j in range(MATRIX_WIDTH)]
-matrix[0][0] = "g"
+
+# g stands for grass
+# b stands for body
+# h stands for head of snake 
+# a stands for apple 
+
+matrix = [["g" for i in range(MATRIX_HEIGHT)] for j in range(MATRIX_WIDTH)]
+matrix[0][0] = "b"
+matrix[1][1] = "h"
+matrix[2][2] = "a"
 
 # Define the colors we will use in RGB format
 BLACK = (  0,   0,   0)
@@ -22,61 +30,34 @@ RED =   (255,   0,   0)
 
 def draw(screen: pygame.surface.Surface):
     screen.fill(BLUE)
-    
-    # width = MATRIX_WIDTH
-    # height = MATRIX_HEIGHT
 
+    # for every cell in matrix
     for width in range(MATRIX_WIDTH):
         for height in range(MATRIX_HEIGHT):
-
-            color = GREEN
-            # if matrix[width][height] == "g":
-            #     color = WHITE
-            if width % 2 == 0:
-                if height % 2 == 0: 
-                    color = WHITE
-            if width % 2 == 1:
-                if height % 2 == 1:
-                    color = WHITE
-
-
-
-            if width % 2 == 0 and height % 2 == 0:
+    # get color of cell
+            
+            # default color 
+            color = BLACK
+            # body 
+            if matrix[width][height] == "b":
+                color = GREEN
+            # head of snake
+            if matrix[width][height] == "h":
                 color = WHITE
+            # apple
+            if matrix[width][height] == "a":
+                color = RED
+                
 
+    # draw this cell 
             pygame.draw.rect(screen, color, [width * MATRIX_BOX_PIX, 
                 (MATRIX_HEIGHT - height - 1) * MATRIX_BOX_PIX,
                 MATRIX_BOX_PIX,
                 MATRIX_BOX_PIX])
     
-    # refresh ? 
-            pygame.display.flip()
-            print(width, height)
+    # refresh 
+    pygame.display.flip()
 
-            sleep(0.1)
-
-
-
-    # pygame.draw.rect(screen, GREEN, [start_x, start_y, 50, 50])
-    # pygame.draw.rect(screen, GREEN, [100, 0, 50, 50])
-
-    ''' 
-    for width in range(MATRIX_WIDTH):
-        for height in range(MATRIX_HEIGHT, 0, -1):
-            color = GREEN
-            if matrix[width-1][height-1] == "g":
-                print("g")
-                color = RED
-
-
-            pygame.draw.rect(screen, color, [width*25, height*25, 50, 50])
-
-            print(width, height)
-            if matrix[width- 1][height -1 ] == "g":
-                print(width, height)
-            pygame.display.flip()
-            sleep(0.05)
-    '''
 
 
 def main():
