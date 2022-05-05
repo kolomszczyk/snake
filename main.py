@@ -29,8 +29,22 @@ def draw(screen: pygame.surface.Surface):
     for width in range(MATRIX_WIDTH):
         for height in range(MATRIX_HEIGHT):
 
+            color = GREEN
+            # if matrix[width][height] == "g":
+            #     color = WHITE
+            if width % 2 == 0:
+                if height % 2 == 0: 
+                    color = WHITE
+            if width % 2 == 1:
+                if height % 2 == 1:
+                    color = WHITE
 
-            pygame.draw.rect(screen, GREEN, [width * MATRIX_BOX_PIX, 
+
+
+            if width % 2 == 0 and height % 2 == 0:
+                color = WHITE
+
+            pygame.draw.rect(screen, color, [width * MATRIX_BOX_PIX, 
                 (MATRIX_HEIGHT - height - 1) * MATRIX_BOX_PIX,
                 MATRIX_BOX_PIX,
                 MATRIX_BOX_PIX])
