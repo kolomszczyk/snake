@@ -19,6 +19,18 @@ class Snake():
         self.direction = directection
 
     def move(self, direction: str):
-        pass
+        if direction == "up":
+            self.head_y += 1
+        if direction == "down":
+            self.head_y -= 1
+        if direction == "left":
+            self.head_x -= 1
+        if direction == "right":
+            self.head_x += 1
+
+
+
+
+
 
 

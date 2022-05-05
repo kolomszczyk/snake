@@ -1,7 +1,9 @@
 import pygame
-# from time import sleep
+from time import sleep
+import time
 from snake import * 
 from utils import *
+
 
 # g stands for grass
 # b stands for body
@@ -29,7 +31,7 @@ def draw(screen: pygame.surface.Surface, snake: Snake):
     # for every cell in matrix
     for width in range(MATRIX_WIDTH):
         for height in range(MATRIX_HEIGHT):
-    # get color of cell
+            # get color of cell
             
             # default color 
             color = BLACK
@@ -44,26 +46,21 @@ def draw(screen: pygame.surface.Surface, snake: Snake):
                 color = RED
                 
 
-    # draw this cell 
+            # draw this cell 
             draw_rect(screen, color, width, height)
             
-            # pygame.draw.rect(screen, color, [width * MATRIX_BOX_PIX, 
-            #     (MATRIX_HEIGHT - height - 1) * MATRIX_BOX_PIX,
-            #     MATRIX_BOX_PIX,
-            #     MATRIX_BOX_PIX])
 
     # draw snake
     # head
-    pygame.draw.rect(screen, BLUE, [snake.head_x * MATRIX_BOX_PIX, 
-        (MATRIX_HEIGHT - snake.head_y - 1) * MATRIX_BOX_PIX,
-        MATRIX_BOX_PIX,
-        MATRIX_BOX_PIX])
+    draw_rect(screen, BLUE, snake.head_x, snake.head_y)
 
     # refresh 
     pygame.display.flip()
 
 def tick(snake: Snake):
-    pass
+    snake.move(snake.direction)
+    # sleep(1)
+    
     
         
 
@@ -80,6 +77,8 @@ def main():
 
     running = True
    
+    t0 = time.time()
+
     # main loop
     while(running):
         
@@ -104,7 +103,13 @@ def main():
                     snake.set_direction("down")
 
 
-        tick(snake)
+        # run tick fucntion
+        # every 1 s 
+        t1 = time.time()        
+        if(t1 - t0 >= 1):
+            # reset clock
+            t0 = t1
+            tick(snake)
 
         
         draw(screen, snake)
