@@ -1,5 +1,6 @@
 import pygame
-from time import sleep
+# from time import sleep
+from snake import * 
 
 MATRIX_WIDTH: int = 30
 MATRIX_HEIGHT: int =  30
@@ -14,7 +15,7 @@ HEIGHT_PIX: int = MATRIX_HEIGHT  * MATRIX_BOX_PIX
 # h stands for head of snake 
 # a stands for apple 
 
-matrix = [["g" for i in range(MATRIX_HEIGHT)] for j in range(MATRIX_WIDTH)]
+matrix = [["g" for _ in range(MATRIX_HEIGHT)] for _ in range(MATRIX_WIDTH)]
 matrix[0][0] = "b"
 matrix[1][1] = "h"
 matrix[2][2] = "a"
@@ -25,10 +26,11 @@ WHITE = (255, 255, 255)
 BLUE =  (  0,   0, 255)
 GREEN = (  0, 255,   0)
 RED =   (255,   0,   0)
- 
 
 
-def draw(screen: pygame.surface.Surface):
+
+
+def draw(screen: pygame.surface.Surface, snake: Snake):
     screen.fill(BLUE)
 
     # for every cell in matrix
@@ -54,9 +56,21 @@ def draw(screen: pygame.surface.Surface):
                 (MATRIX_HEIGHT - height - 1) * MATRIX_BOX_PIX,
                 MATRIX_BOX_PIX,
                 MATRIX_BOX_PIX])
+
+    # draw snake
+    # head
     
+    pygame.draw.rect(screen, BLUE, [snake.head_x * MATRIX_BOX_PIX, 
+        (MATRIX_HEIGHT - snake.head_y - 1) * MATRIX_BOX_PIX,
+        MATRIX_BOX_PIX,
+        MATRIX_BOX_PIX])
     # refresh 
     pygame.display.flip()
+
+def tick(snake: Snake):
+    pass
+    
+        
 
 
 
@@ -67,10 +81,15 @@ def main():
     # create a surface on screen that has the size of WIDTH x HEIGHT
     screen = pygame.display.set_mode((WIDTH_PIX, HEIGHT_PIX))
 
+    snake: Snake = Snake(15, 15)
+
     running = True
    
     # main loop
     while(running):
+        
+         
+        
 
         # event handling, gets all event from the event queue
         for event in pygame.event.get():
@@ -78,8 +97,22 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+            if event.type == pygame.KEYDOWN:
+            # set snake direction
+                if event.key == pygame.K_a:
+                    snake.set_direction("left")
+                if event.key == pygame.K_d:
+                    snake.set_direction("right")
+                if event.key == pygame.K_w:
+                    snake.set_direction("up")
+                if event.key == pygame.K_s:
+                    snake.set_direction("down")
+
+
+        tick(snake)
+
         
-        draw(screen)
+        draw(screen, snake)
         
 
 if __name__ == "__main__":
