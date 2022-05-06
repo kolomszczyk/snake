@@ -53,12 +53,27 @@ def draw(screen: pygame.surface.Surface, snake: Snake):
     # draw snake
     # head
     draw_rect(screen, BLUE, snake.head_x, snake.head_y)
+    # body
+    for point in snake.body:
+        draw_rect(screen, GREEN, point[0], point[1])
+    
+
+
 
     # refresh 
     pygame.display.flip()
+    
 
 def tick(snake: Snake):
+
+
     snake.move(snake.direction)
+
+    
+
+
+    
+    
     # sleep(1)
     
     
@@ -106,7 +121,7 @@ def main():
         # run tick fucntion
         # every 1 s 
         t1 = time.time()        
-        if(t1 - t0 >= 1):
+        if(t1 - t0 >= 0.5):
             # reset clock
             t0 = t1
             tick(snake)
