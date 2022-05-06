@@ -11,9 +11,6 @@ from utils import *
 # a stands for apple 
 
 matrix = [["g" for _ in range(MATRIX_HEIGHT)] for _ in range(MATRIX_WIDTH)]
-matrix[0][0] = "b"
-matrix[1][1] = "h"
-matrix[2][2] = "a"
 
 # Define the colors we will use in RGB format
 BLACK = (  0,   0,   0)
