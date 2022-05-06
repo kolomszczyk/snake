@@ -68,12 +68,16 @@ class Snake():
     # apple stuf
     def generate_next_apple(self):
         # do while apple is on other place then head not body 
+        # to do:
+        # - dont allow apple to spawn on body
         local_is_head_on_apple: bool = True
         while(local_is_head_on_apple):
-            self.apple_x = random.randint(0, MATRIX_WIDTH)
-            self.apple_y = random.randint(0, MATRIX_HEIGHT)
+            self.apple_x = random.randint(0, MATRIX_WIDTH - 1)
+            self.apple_y = random.randint(0, MATRIX_HEIGHT - 1)
             if self.apple_x != self.head_x and self.apple_y != self.head_y:
                 local_is_head_on_apple = False
+
+        print(f"apple x:{self.apple_x} y:{self.apple_y}")
 
 
 

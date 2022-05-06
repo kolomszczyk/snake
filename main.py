@@ -45,7 +45,11 @@ def draw(screen: pygame.surface.Surface, snake: Snake):
 
             # draw this cell 
             draw_rect(screen, color, width, height)
-            
+
+
+
+    # apple        
+    draw_rect(screen, RED, snake.apple_x, snake.apple_y)
 
     # draw snake
     # head
