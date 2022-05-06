@@ -64,6 +64,35 @@ class Snake():
         if direction == "right":
             self.head_x += 1
 
+    def is_next_move_collision(self) -> bool:
+        # next_head_posision_x 
+        nhp_x = self.head_x
+        # next_head_posision_y
+        nhp_y = self.head_y
+
+        # calculate next posision of head 
+        if self.direction == "up":
+            nhp_y += 1
+        if self.direction == "down":
+            nhp_y -= 1
+        if self.direction == "left":
+            nhp_x -= 1
+        if self.direction == "right":
+            nhp_x += 1
+
+        # matrix border
+        if nhp_x < 0 or nhp_x >= MATRIX_WIDTH or nhp_y < 0 or nhp_y >= MATRIX_HEIGHT:
+            return True
+       
+        # check that posision for colision 
+
+
+        # snake body
+
+        return False
+
+        
+
 
     # apple stuf
     def generate_next_apple(self):

@@ -66,19 +66,13 @@ def draw(screen: pygame.surface.Surface, snake: Snake):
     
 
 def tick(snake: Snake):
+    if( snake.is_next_move_collision() == True):
+        # end of game
+        game_end()
 
 
     snake.move(snake.direction)
 
-    
-
-
-    
-    
-    # sleep(1)
-    
-    
-        
 
 
 

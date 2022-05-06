@@ -19,3 +19,8 @@ def draw_rect(screen, color, x, y):
         MATRIX_BOX_PIX,
         MATRIX_BOX_PIX])
 
+
+def game_end():
+    print("game ended")
+    print("thx for plaing")
+    exit()
