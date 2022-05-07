@@ -65,14 +65,21 @@ def draw(screen: pygame.surface.Surface, snake: Snake):
     pygame.display.flip()
     
 
-def tick(snake: Snake):
-    if( snake.is_next_move_collision() == True):
-        # end of game
-        game_end()
+def tick(snake: Snake) -> bool:
 
 
+    stop_game = snake.is_next_move_collision()
+
+    # if stop game
+    # dont draw last frame
+    if stop_game == False:
+        return stop_game
+        
     snake.move(snake.direction)
 
+
+
+    return stop_game
 
 
 
@@ -119,11 +126,12 @@ def main():
         if(t1 - t0 >= 0.5):
             # reset clock
             t0 = t1
-            tick(snake)
+            running = tick(snake)
 
         
         draw(screen, snake)
-        
+
+    game_end()
 
 if __name__ == "__main__":
     main()
